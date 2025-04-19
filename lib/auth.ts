@@ -1,6 +1,28 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { compare } from "bcrypt";
+import { User } from "next-auth";
+
+// Extend the User type to include role
+interface CustomUser extends User {
+  role?: string;
+}
+
+// Extend the Session and JWT types
+declare module "next-auth" {
+  interface Session {
+    user?: {
+      name?: string | null;
+      email?: string | null;
+      image?: string | null;
+      role?: string;
+    };
+  }
+
+  interface JWT {
+    role?: string;
+  }
+}
 
 // In a real application, you would store users in the database
 // For simplicity, we're using a hardcoded admin user
@@ -60,13 +82,15 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.role = user.role;
+        // Cast user to CustomUser to access the role property
+        token.role = (user as CustomUser).role;
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
-        session.user.role = token.role;
+        // Use type assertion to handle the role property
+        session.user.role = token.role as string | undefined;
       }
       return session;
     },

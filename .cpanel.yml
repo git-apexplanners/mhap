@@ -1,0 +1,37 @@
+---
+deployment:
+  tasks:
+    # Deploy the repository to the public_html directory
+    - export DEPLOYPATH=/home/username/public_html/
+
+    # Copy all files from the repository to the deployment path
+    # Excluding node_modules, .git, and other unnecessary files
+    - /bin/cp -R app $DEPLOYPATH
+    - /bin/cp -R components $DEPLOYPATH
+    - /bin/cp -R lib $DEPLOYPATH
+    - /bin/cp -R public $DEPLOYPATH
+    - /bin/cp -R styles $DEPLOYPATH
+    - /bin/cp -R utils $DEPLOYPATH
+    - /bin/cp -R database $DEPLOYPATH
+    - /bin/cp .env.production $DEPLOYPATH.env
+    - /bin/cp next.config.js $DEPLOYPATH
+    - /bin/cp package.json $DEPLOYPATH
+    - /bin/cp package-lock.json $DEPLOYPATH
+    - /bin/cp postcss.config.js $DEPLOYPATH
+    - /bin/cp tailwind.config.js $DEPLOYPATH
+    - /bin/cp tsconfig.json $DEPLOYPATH
+    - /bin/cp server.js $DEPLOYPATH
+
+    # Create certs directory for SSL certificates
+    - mkdir -p $DEPLOYPATH/certs
+
+    # Navigate to the deployment directory and install dependencies
+    - cd $DEPLOYPATH && npm install --production
+
+    # Build the Next.js application
+    - cd $DEPLOYPATH && npm run build
+
+    # Set appropriate permissions
+    - chmod 755 $DEPLOYPATH
+    - find $DEPLOYPATH -type d -exec chmod 755 {} \;
+    - find $DEPLOYPATH -type f -exec chmod 644 {} \;

@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { Category, Project, ProjectImage, defaultData } from './mysql';
+import { Category, Project, ProjectImage, defaultData, db } from './mysql';
 import { apiClient } from './api-client';
 
 // Define the context type

@@ -47,7 +47,7 @@ const NavItemComponent = ({ item, isExpanded, level = 0 }: { item: NavItem; isEx
           </>
         )}
       </div>
-      {isOpen && isExpanded && hasChildren && (
+      {isOpen && isExpanded && hasChildren && item.children && (
         <div className="mt-1">
           {item.children.map((child: NavItem, index: number) => (
             <NavItemComponent

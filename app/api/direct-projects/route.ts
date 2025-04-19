@@ -44,7 +44,7 @@ export async function GET() {
       host: 'localhost',
       port: 3306,
       user: 'root',
-      password: 'password',
+      password: 'Qwerty777$$$',
       database: 'project_bolt',
       connectTimeout: 10000, // 10 seconds timeout
       // Limit the number of prepared statements
@@ -56,7 +56,8 @@ export async function GET() {
 
     // Return the projects
     return NextResponse.json(projects);
-  } catch (error) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_) {
     // Return default projects instead of an error
     return NextResponse.json(defaultProjects);
   } finally {
@@ -64,7 +65,8 @@ export async function GET() {
     if (connection) {
       try {
         await connection.end();
-      } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (_) {
         // Silently handle connection close errors
       }
     }

@@ -36,8 +36,13 @@ export function HelpPanel() {
           // Check for subsections
           if (path.length > 2 && section in helpContent && 'subsections' in helpContent[section]) {
             const subsection = path[2];
-            if (subsection in helpContent[section].subsections) {
-              newContent = helpContent[section].subsections[subsection];
+            const sectionContent = helpContent[section];
+
+            // Type guard to ensure subsections exists
+            if ('subsections' in sectionContent &&
+                sectionContent.subsections &&
+                subsection in sectionContent.subsections) {
+              newContent = sectionContent.subsections[subsection];
             }
           }
         }

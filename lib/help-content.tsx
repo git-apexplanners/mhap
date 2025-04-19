@@ -100,7 +100,7 @@ export const helpContent: Record<string, { title: string; content: React.ReactNo
           <>
             <h3>Project Editor</h3>
             <p>
-              The project editor allows you to create or edit a project's details.
+              The project editor allows you to create or edit a project&apos;s details.
             </p>
 
             <h4>Basic Information</h4>
@@ -246,7 +246,7 @@ export const helpContent: Record<string, { title: string; content: React.ReactNo
           <li>Use clear, descriptive category names</li>
           <li>Limit nesting to 2-3 levels for better usability</li>
           <li>Be consistent with naming conventions</li>
-          <li>Consider the user's perspective when organizing categories</li>
+          <li>Consider the user&apos;s perspective when organizing categories</li>
         </ul>
 
         <h4>Category Limitations</h4>
@@ -293,7 +293,7 @@ export const helpContent: Record<string, { title: string; content: React.ReactNo
           <li><strong>Description</strong> - A brief summary of the page</li>
           <li><strong>Content</strong> - The main page content using the rich text editor</li>
           <li><strong>Featured Image</strong> - Optional header image for the page</li>
-          <li><strong>Page Type</strong> - The type of page you're creating</li>
+          <li><strong>Page Type</strong> - The type of page you&apos;re creating</li>
           <li><strong>Parent Page</strong> - Optional parent page for hierarchical organization</li>
         </ul>
 
@@ -334,7 +334,7 @@ export const helpContent: Record<string, { title: string; content: React.ReactNo
           <>
             <h3>Page Editor</h3>
             <p>
-              The page editor allows you to create or edit a page's content and settings.
+              The page editor allows you to create or edit a page&apos;s content and settings.
             </p>
 
             <h4>Basic Information</h4>

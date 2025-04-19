@@ -104,7 +104,7 @@ export default function PageEditor() {
     parent_id: null as string | null,
   });
 
-  const [pages, setPages] = useState<{ id: string; title: string; slug: string; parent_id: string | null }[]>([]);
+  const [pages, setPages] = useState<{ id: string; title: string; slug: string; parent_id?: string | null }[]>([]);
 
   useEffect(() => {
     // Fetch all pages for parent selection

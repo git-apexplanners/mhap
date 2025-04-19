@@ -1,6 +1,6 @@
-# Project Bolt
+# Michael Hart Architects Website
 
-A modern web application for managing and showcasing architectural projects.
+A modern web application for managing and showcasing architectural projects for Michael Hart Architects.
 
 ## Features
 
@@ -13,9 +13,10 @@ A modern web application for managing and showcasing architectural projects.
 ## Tech Stack
 
 - Next.js for the frontend and API routes
-- MySQL for the database
+- MySQL for the database (configured for production use)
 - TailwindCSS for styling
 - Shadcn UI for components
+- NextAuth.js for authentication
 
 ## Getting Started
 
@@ -49,15 +50,30 @@ A modern web application for managing and showcasing architectural projects.
    ```
 
 4. Set up MySQL:
-   
+
    Option 1: Using Docker
    ```bash
    docker-compose up -d
    ```
-   
-   Option 2: Using a local MySQL installation
+
+   Option 2: Using a local MySQL installation with SQL script
    ```bash
    mysql -u root -p < db/schema.sql
+   ```
+
+   Option 3: Using the JavaScript setup script
+   ```bash
+   npm run db:setup:js
+   ```
+
+   Option 4: Using npm script (requires MySQL CLI)
+   ```bash
+   npm run db:setup
+   ```
+
+   To verify the database setup:
+   ```bash
+   npm run db:test
    ```
 
 5. Start the development server:
@@ -82,6 +98,9 @@ A modern web application for managing and showcasing architectural projects.
 - `public/` - Static assets
   - `uploads/` - Uploaded files
 - `db/` - Database schema and migrations
+- `scripts/` - Utility scripts
+  - `setup-database.js` - Database setup script
+  - `test-db-setup.js` - Database test script
 - `tests/` - Test files
 
 ## Testing
@@ -93,7 +112,13 @@ npm run test:vitest
 
 ## Deployment
 
-See [DEPLOYMENT.md](DEPLOYMENT.md) for deployment instructions.
+### cPanel Deployment
+
+This project includes a `.cpanel.yml` file for automated deployment to cPanel hosting environments. See [CPANEL_SETUP.md](CPANEL_SETUP.md) for detailed cPanel deployment instructions.
+
+### Other Deployment Options
+
+For other deployment options, see [DEPLOYMENT.md](DEPLOYMENT.md).
 
 ## License
 

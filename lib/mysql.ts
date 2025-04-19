@@ -9,10 +9,10 @@ const isServer = typeof window === 'undefined';
 // Create a connection pool only on the server side
 const pool = isServer
   ? mysql.createPool({
-    host: process.env.MYSQL_HOST || 'localhost',
-    user: process.env.MYSQL_USER || 'root',
-    password: process.env.MYSQL_PASSWORD || 'password',
-    database: process.env.MYSQL_DATABASE || 'project_bolt',
+    host: 'localhost',
+    user: 'root',
+    password: 'Qwerty777$$$',
+    database: 'project_bolt',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
@@ -21,7 +21,7 @@ const pool = isServer
 
 // Helper function to execute queries
 // Define a more specific type for query parameters
-type QueryParam = string | number | boolean | null | Buffer | Date;
+type QueryParam = string | number | boolean | null | Buffer | Date | string[];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function query(sql: string, params: QueryParam[] = []) {
@@ -127,7 +127,7 @@ export const db = {
 
     const values = Object.entries(category)
       .filter(([_, value]) => value !== undefined)
-      .map(([_, value]) => value);
+      .map(([_, value]) => value as QueryParam);
 
     await query(
       `UPDATE categories SET ${updates.join(', ')} WHERE id = ?`,
@@ -203,7 +203,7 @@ export const db = {
         if (key === 'gallery_image_urls' && value !== null) {
           return JSON.stringify(value);
         }
-        return value;
+        return value as QueryParam;
       });
 
     // Format date for MySQL timestamp
@@ -312,7 +312,7 @@ export const db = {
 
     const values = Object.entries(filteredPage)
       .filter(([_, value]) => value !== undefined)
-      .map(([_, value]) => value);
+      .map(([_, value]) => value as QueryParam);
 
     // Format date for MySQL timestamp
     const now = new Date();

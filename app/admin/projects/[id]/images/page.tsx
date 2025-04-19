@@ -176,7 +176,7 @@ export default function ProjectImages() {
       }
 
       // 4. Remove the URL from the gallery
-      const updatedGalleryUrls = galleryUrls.filter(url => url !== imageToDelete.url);
+      const updatedGalleryUrls = galleryUrls.filter((url: string) => url !== imageToDelete.url);
 
       // 5. Update the project with the new gallery_image_urls
       await fetch(`/api/projects/${params.id}`, {
